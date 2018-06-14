@@ -28,10 +28,15 @@ object WordCountState {
     conf.setMaster("local[*]")
     conf.setAppName(this.getClass.getSimpleName)
     val ssc = new StreamingContext(conf, Seconds(2))
+    //可以将他们放在HDFS上面
+    ssc.checkpoint("/Users/zhangjin/myCode/learn/spark-streaming/input")
 
 
     val stream: ReceiverInputDStream[String] = ssc.socketTextStream("hdp1", 9999)
     val wordCountResult: DStream[(String, Int)] = stream.flatMap(_.split(" ")).map((_, 1)).updateStateByKey(updateFunction)
+
+
+    //数据积压   计算不完 他是永远计算不完的
 
     wordCountResult.print()
 
