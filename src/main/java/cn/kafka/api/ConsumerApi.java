@@ -1,5 +1,7 @@
 package cn.kafka.api;
 
+import org.apache.kafka.clients.consumer.ConsumerRecord;
+import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.common.serialization.StringDeserializer;
 
@@ -35,7 +37,19 @@ public class ConsumerApi {
         /**
          *制定你要消费的主题 从哪个主题消费数据 可以同时指定多个主题
          */
-        consumer.subscribe(Arrays.asList("kafka"));
+        consumer.subscribe(Arrays.asList("hellokafka"));
+        //拉取下来的数据
+        while (true) {
+            ConsumerRecords<String, String> records = consumer.poll(3000);
+            /**
+             * 拉取的消息  全局无序 但是在单个分区里面 是 有序的
+             * 只有一个分区的情况下 才可能是全局有序  但是 这样kafka就变成单机的了
+             */
+            for (ConsumerRecord record : records) {
+                System.out.println("record=" + record);
+            }
+        }
+
 
     }
 }
