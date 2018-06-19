@@ -30,6 +30,7 @@ public class ConsumerApi {
         //自动提交偏移量
         properties.setProperty("enable.auto.commit", "true");//_consumer_offset 特殊的主题
 
+
         /**
          * 消费者 客户端
          */
