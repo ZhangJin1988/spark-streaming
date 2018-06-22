@@ -1,16 +1,12 @@
 package cn.sheep.pratice
 
-import cn.sheep.streaming.WordCountPlus.functionCreateContext
 import cn.sheep.tools.Jtools
-import org.apache.kafka.common.serialization.StringDeserializer
 import org.apache.spark.streaming.kafka010.KafkaUtils
-import org.apache.kafka.clients.consumer.ConsumerRecord
 import org.apache.kafka.common.serialization.StringDeserializer
 import org.apache.spark.SparkConf
 import org.apache.spark.rdd.RDD
 import org.apache.spark.streaming.{Seconds, StreamingContext}
 import org.apache.spark.streaming.dstream.DStream
-import org.apache.spark.streaming.kafka010._
 import org.apache.spark.streaming.kafka010.LocationStrategies.PreferConsistent
 import org.apache.spark.streaming.kafka010.ConsumerStrategies.Subscribe
 import redis.clients.jedis.Jedis
@@ -43,6 +39,7 @@ object SparkStreamingForKafka {
       "auto.offset.reset" -> "latest",
       "enable.auto.commit" -> (true: java.lang.Boolean)
     )
+
 
     val topics = Array("topicA")
     val stream = KafkaUtils.createDirectStream[String, String](

@@ -44,7 +44,7 @@ object KafkaProducer {
 
       //将消息封装成一个producerRecord
       val str: String = c.toString
-      val producerRecord = new ProducerRecord[String, String]("topicA", UUID.randomUUID.toString, str)
+      val producerRecord = new ProducerRecord[String, String]("topicA", UUID.randomUUID.toString, getRandomWords)
       val send: Future[RecordMetadata] = kafkaProducer.send(producerRecord)
       System.out.println("this is message " + str)
       i += 1

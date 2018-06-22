@@ -1,7 +1,7 @@
 package cn.sheep.streaming
 
 
-import cn.sheep.streaming.WordCountState.updateFunction
+import cn.sheep.streaming.WordCountStates.updateFunction
 import org.apache.log4j.{Level, Logger}
 import org.apache.spark.SparkConf
 import org.apache.spark.streaming.dstream.{DStream, ReceiverInputDStream}

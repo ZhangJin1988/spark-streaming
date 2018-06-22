@@ -15,7 +15,7 @@ import java.util.concurrent.Future;
  * @create 2018-06-19 18:04
  * wordCount配置数据源 到 kafka
  */
-public class PracticeWordCountByKafka {
+public class PracticeWordCountsByKafka {
 
 
     private String getRandomWord() {
